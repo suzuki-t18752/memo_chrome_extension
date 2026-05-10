@@ -39,27 +39,6 @@
       :host { all: initial; }
       * { box-sizing: border-box; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
 
-      .opener {
-        position: fixed;
-        top: 12px;
-        right: 12px;
-        z-index: 2147483647;
-        width: 40px;
-        height: 40px;
-        border: none;
-        border-radius: 50%;
-        background: #ffd54f;
-        color: #333;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: auto;
-      }
-      .opener:hover { background: #ffca28; }
-
       .panel {
         position: fixed;
         z-index: 2147483646;
@@ -134,12 +113,10 @@
       .resizer.se { bottom: -4px; right: -4px; width: 12px; height: 12px; cursor: nwse-resize; }
 
       /* open/close visibility */
-      .root[data-open="true"]  .opener { display: none; }
-      .root[data-open="false"] .panel  { display: none; }
+      .root[data-open="false"] .panel { display: none; }
     </style>
 
     <div class="root" data-open="${state.isOpen}">
-      <button class="opener" title="メモを開く">📝</button>
       <div class="panel">
         <div class="header">
           <span class="title">📝 メモ</span>
@@ -163,7 +140,6 @@
   const panel = shadow.querySelector(".panel");
   const header = shadow.querySelector(".header");
   const textarea = shadow.querySelector("textarea");
-  const opener = shadow.querySelector(".opener");
   const closer = shadow.querySelector(".closer");
   const status = shadow.querySelector(".status");
 
@@ -214,11 +190,6 @@
   });
   window.addEventListener("beforeunload", () => {
     if (saveTimer) flushSave();
-  });
-
-  opener.addEventListener("click", async () => {
-    root.dataset.open = "true";
-    await chrome.storage.local.set({ isOpen: true });
   });
 
   closer.addEventListener("click", async () => {
