@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sticky Memo</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Sticky Memo</h1>
+
+    <section>
+      <div class="row">
+        <span class="label">表示状態</span>
+        <label class="switch">
+          <input type="checkbox" id="openToggle" />
+          <span>開く</span>
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">操作</div>
+      <button class="secondary" id="resetPosBtn">位置・サイズをリセット</button>
+    </section>
+
+    <section>
+      <div class="label">メモ <span class="count" id="count">0文字</span></div>
+      <button class="danger" id="clearBtn">メモをクリア</button>
+    </section>
+
+    <p class="hint">
+      ヘッダーをドラッグで移動、四辺・四隅をドラッグでサイズ変更。<br />
+      メモは全タブ・全サイトで共有されます。
+    </p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
